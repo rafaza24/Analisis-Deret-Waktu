@@ -1,0 +1,42 @@
+---
+title: "Tugas Lab"
+author: "Rafid Farhan Zai"
+date: "2025-04-21"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#NOMOR 1 DATASETS Treering
+
+library(datasets) 
+help('datasets')
+plot(treering,xlab='Tahun',ylab='Lebar Cincin Pohon',col='pink')
+lines(lowess(treering), col="red", lwd=2)
+# Mengkonversi ke time series 
+ts_data<- ts(treering, frequency = 12)
+dekomposisi<-decompose(ts_data, type='additive')
+plot(dekomposisi)
+```
+##INTERPRETASI : 
+
+#Plot Lebar Cincin Pohon 
+  # Data menunjukkan fluktuasi lebar cincin pohon dari tahun -6000 hingga 2000, dengan variasi yang tidak stabil, mengindikasikan perubahan kondisi lingkungan yang memengaruhi pertumbuhan pohon.
+
+#Plot Observed
+  # Menunjukkan lebar cincin pohon dari waktu ke waktu, dengan fluktuasi acak yang mencerminkan variasi pertumbuhan tahunan.
+
+# Plot Trend
+  # Garis halus yang mengungkap pola jangka panjang: tren relatif stabil tanpa kenaikan/penurunan ekstrem, tetapi ada sedikit fluktuasi dalam skala besar (misalnya periode pertumbuhan lebih cepat/lambat).
+
+# Plot Seasonal
+  # Pola datar (garis lurus di nol) karena data cincin pohon diukur tahunan, sehingga tidak ada siklus bulanan atau musiman yang terlihat.
+
+#Plot Random
+  # Menyisakan variasi yang tidak bisa dijelaskan oleh tren atau musiman, seperti dampak cuaca ekstrem, serangan hama, atau gangguan lingkungan lain pada pertumbuhan pohon.
+
+
+
